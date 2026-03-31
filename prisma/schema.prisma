@@ -1,0 +1,304 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Grade {
+  id        String @id // (예: grade_green)
+  name      String
+  rate      Int
+  minAmount Int    @map("min_amount")
+  users     User[]
+
+  @@map("grades")
+}
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  password String
+  name     String
+  image    String?
+  type     String
+  points   Int     @default(0)
+
+  grade   Grade?  @relation(fields: [gradeId], references: [id])
+  gradeId String? @map("grade_id")
+
+  refreshToken String?  @map("refresh_token")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  stores         Store?
+  cart           Cart?
+  orders         Order[]
+  reviews        Review[]
+  favoriteStores FavoriteStore[]
+  inquiries      Inquiry[]
+  inquiryReplies InquiryReply[]
+  notifications  Notification[]
+
+  @@map("users")
+}
+
+model Store {
+  id            String @id @default(uuid())
+  name          String
+  address       String
+  detailAddress String @map("detail_address")
+  phoneNumber   String @map("phone_number")
+  image         String
+  content       String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique @map("user_id")
+
+  products       Product[]
+  favoriteStores FavoriteStore[]
+
+  @@map("stores")
+}
+
+model FavoriteStore {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  store   Store  @relation(fields: [storeId], references: [id])
+  storeId String @map("store_id")
+
+  @@map("favorite_stores")
+}
+
+model Product {
+  id                String    @id @default(uuid())
+  name              String
+  image             String
+  price             Int
+  discountPrice     Int?      @map("discount_price")
+  discountRate      Int?      @map("discount_rate")
+  discountStartTime DateTime? @map("discount_start_time")
+  discountEndTime   DateTime? @map("discount_end_time")
+  isSoldOut         Boolean   @default(false) @map("is_sold_out")
+  content           String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int      @map("category_id")
+
+  store   Store  @relation(fields: [storeId], references: [id])
+  storeId String @map("store_id")
+
+  productStocks ProductStock[]
+  cartItems     CartItem[]
+  orderItems    OrderItem[]
+  reviews       Review[]
+  inquiries     Inquiry[]
+
+  @@map("products")
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  products Product[]
+
+  @@map("categories")
+}
+
+model ProductStock {
+  id       String @id @default(uuid())
+  quantity Int
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @map("product_id")
+
+  size   Size @relation(fields: [sizeId], references: [id])
+  sizeId Int  @map("size_id")
+
+  @@map("product_stocks")
+}
+
+model Size {
+  id     Int    @id @default(autoincrement())
+  name   String
+  sizeEn String @map("size_en")
+  sizeKo String @map("size_ko")
+
+  productStocks ProductStock[]
+  cartItems     CartItem[]
+  orderItems    OrderItem[]
+
+  @@map("sizes")
+}
+
+model Cart {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique @map("user_id")
+
+  cartItems CartItem[]
+
+  @@map("carts")
+}
+
+model CartItem {
+  id        String   @id @default(uuid())
+  quantity  Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  cart   Cart   @relation(fields: [cartId], references: [id])
+  cartId String @map("cart_id")
+
+  size   Size @relation(fields: [sizeId], references: [id])
+  sizeId Int  @map("size_id")
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @map("product_id")
+
+  @@map("cart_items")
+}
+
+model Order {
+  id            String @id @default(uuid())
+  name          String
+  phoneNumber   String @map("phone_number")
+  address       String
+  subtotal      Int
+  totalQuantity Int    @map("total_quantity")
+  usePoint      Int    @map("use_point")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String? @map("user_id")
+
+  orderItems OrderItem[]
+  payments   Payment? @relation("OrderPayments")
+
+  @@map("orders")
+}
+
+model Payment {
+  id     String @id @default(uuid())
+  price  Int
+  status String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  order   Order  @relation("OrderPayments", fields: [orderId], references: [id])
+  orderId String @unique @map("order_id")
+
+  @@map("payments")
+}
+
+model OrderItem {
+  id         String  @id @default(uuid())
+  quantity   Int
+  price      Int
+  isReviewed Boolean @map("is_reviewed")
+
+  order   Order  @relation(fields: [orderId], references: [id])
+  orderId String @map("order_id")
+
+  size   Size @relation(fields: [sizeId], references: [id])
+  sizeId Int  @map("size_id")
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @map("product_id")
+
+  review Review? // 1:1
+
+  @@map("order_items")
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  rating    Int
+  content   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @map("product_id")
+
+  orderItem   OrderItem @relation(fields: [orderItemId], references: [id])
+  orderItemId String    @unique @map("order_item_id")
+
+  @@map("reviews")
+}
+
+model Inquiry {
+  id        String   @id @default(uuid())
+  title     String
+  content   String
+  isSecret  Boolean  @default(false) @map("is_secret")
+  status    String   @default("WaitingAnswer")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @map("product_id")
+
+  reply InquiryReply? // 1:1 자식옵셔널
+
+  @@map("inquiries")
+}
+
+model InquiryReply {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  inquiry   Inquiry @relation(fields: [inquiryId], references: [id])
+  inquiryId String  @unique @map("inquiry_id") // 1:1 고유망
+
+  user   User   @relation(fields: [userId], references: [id]) // 답변 단 판매자
+  userId String @map("user_id")
+
+  @@map("inquiry_replies")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  content   String
+  isChecked Boolean  @default(false) @map("is_checked")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("notifications")
+}
