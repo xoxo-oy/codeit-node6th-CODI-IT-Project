@@ -1,0 +1,14 @@
+nohup: ignoring input
+   ▲ Next.js 15.5.7
+   - Local:        http://localhost:3000
+   - Network:      http://0.0.0.0:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 2.3s
+ ○ Compiling / ...
+ ✓ Compiled / in 1854ms (997 modules)
+ HEAD / 307 in 2380ms
+ HEAD / 307 in 79ms
+ HEAD / 307 in 69ms
+ GET / 307 in 78ms

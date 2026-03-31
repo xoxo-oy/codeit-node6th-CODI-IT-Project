@@ -1,0 +1,67 @@
+nohup: ignoring input
+
+> project-codiit-fe@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.7
+   - Local:        http://localhost:3000
+   - Network:      http://10.255.255.254:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 2.8s
+ ○ Compiling / ...
+ ✓ Compiled / in 2.7s (997 modules)
+ HEAD / 307 in 3432ms
+ GET / 307 in 124ms
+ ○ Compiling /products ...
+ ✓ Compiled /products in 2.5s (1060 modules)
+ GET /products 200 in 3014ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 1893ms (1089 modules)
+ GET /login 200 in 1236ms
+ GET /login 200 in 97ms
+ GET /products 200 in 139ms
+ GET /products 200 in 211ms
+ ○ Compiling /buyer/shopping ...
+ ✓ Compiled /buyer/shopping in 1454ms (1098 modules)
+ GET /buyer/shopping 200 in 1675ms
+ ✓ Compiled / in 269ms (677 modules)
+ GET / 200 in 492ms
+ GET /products 200 in 87ms
+ GET /products 200 in 52ms
+ ○ Compiling /products/[productId] ...
+ ✓ Compiled /products/[productId] in 1157ms (1175 modules)
+ GET /products/ce8582f6-be7d-46ce-96d9-68db0ccf6367 200 in 2021ms
+ GET /buyer/shopping 200 in 47ms
+ ⨯ The requested resource "https://placehold.co/600x600?text=%EC%8B%A4%EB%B2%84%20%EB%A0%88%EC%9D%B4%EC%96%B4%EB%93%9C%20%EB%AA%A9%EA%B1%B8%EC%9D%B4" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ○ Compiling /buyer/order ...
+ ✓ Compiled /buyer/order in 840ms (1180 modules)
+ GET /buyer/order 200 in 928ms
+ ⨯ The requested resource "https://placehold.co/600x600?text=%EC%8B%A4%EB%B2%84%20%EB%A0%88%EC%9D%B4%EC%96%B4%EB%93%9C%20%EB%AA%A9%EA%B1%B8%EC%9D%B4" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ○ Compiling /buyer/mypage ...
+ ✓ Compiled /buyer/mypage in 1276ms (1207 modules)
+ GET /buyer/mypage 200 in 1453ms
+ ⨯ The requested resource "https://placehold.co/600x600?text=%ED%97%A4%EB%B9%84%EC%9B%A8%EC%9D%B4%ED%8A%B8%20%ED%8A%B8%EB%A0%8C%EC%B9%98%20%EC%BD%94%ED%8A%B8" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ⨯ The requested resource "https://placehold.co/600x600?text=%EB%8D%B0%EC%9D%BC%EB%A6%AC%20%EB%B0%94%EC%8B%9C%ED%8B%B0%20%EC%9E%90%EC%BC%93" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ⨯ The requested resource "https://placehold.co/600x600?text=%EC%8B%A4%EB%B2%84%20%EB%A0%88%EC%9D%B4%EC%96%B4%EB%93%9C%20%EB%AA%A9%EA%B1%B8%EC%9D%B4" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ⨯ The requested resource "https://placehold.co/600x600?text=%EC%8B%A4%EB%B2%84%20%EB%A0%88%EC%9D%B4%EC%96%B4%EB%93%9C%20%EB%AA%A9%EA%B1%B8%EC%9D%B4" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ⨯ The requested resource "https://placehold.co/600x600?text=%EC%8B%A4%EB%B2%84%20%EB%A0%88%EC%9D%B4%EC%96%B4%EB%93%9C%20%EB%AA%A9%EA%B1%B8%EC%9D%B4" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ○ Compiling /buyer/review ...
+ ✓ Compiled /buyer/review in 1328ms (1212 modules)
+ GET /buyer/review 200 in 1476ms
+ ⨯ The requested resource "https://placehold.co/600x600?text=%EC%8B%A4%EB%B2%84%20%EB%A0%88%EC%9D%B4%EC%96%B4%EB%93%9C%20%EB%AA%A9%EA%B1%B8%EC%9D%B4" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ⨯ The requested resource "https://placehold.co/600x600?text=%ED%81%B4%EB%9E%98%EC%8B%9D%20%EC%B9%98%EB%85%B8%20%ED%8C%AC%EC%B8%A0" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ⨯ The requested resource "https://placehold.co/600x600?text=%EB%8D%B0%EC%9D%BC%EB%A6%AC%20%EB%B0%94%EC%8B%9C%ED%8B%B0%20%EC%9E%90%EC%BC%93" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ⨯ The requested resource "https://placehold.co/600x600?text=%ED%97%A4%EB%B9%84%EC%9B%A8%EC%9D%B4%ED%8A%B8%20%ED%8A%B8%EB%A0%8C%EC%B9%98%20%EC%BD%94%ED%8A%B8" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ○ Compiling /buyer/inquiry ...
+ ✓ Compiled /buyer/inquiry in 1030ms (1235 modules)
+ GET /buyer/inquiry 200 in 1145ms
+ GET /buyer/inquiry 200 in 669ms
+ ○ Compiling /buyer/edit-profile ...
+ ✓ Compiled /buyer/edit-profile in 1087ms (1246 modules)
+ GET /buyer/edit-profile 200 in 1271ms
+ GET /buyer/mypage 200 in 54ms
+ ⨯ The requested resource "https://placehold.co/600x600?text=%EB%8D%B0%EC%9D%BC%EB%A6%AC%20%EB%B0%94%EC%8B%9C%ED%8B%B0%20%EC%9E%90%EC%BC%93" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ⨯ The requested resource "https://placehold.co/600x600?text=%ED%97%A4%EB%B9%84%EC%9B%A8%EC%9D%B4%ED%8A%B8%20%ED%8A%B8%EB%A0%8C%EC%B9%98%20%EC%BD%94%ED%8A%B8" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.
+ ⨯ The requested resource "https://placehold.co/600x600?text=%EC%8B%A4%EB%B2%84%20%EB%A0%88%EC%9D%B4%EC%96%B4%EB%93%9C%20%EB%AA%A9%EA%B1%B8%EC%9D%B4" has type "image/svg+xml" but dangerouslyAllowSVG is disabled. Consider adding the "unoptimized" property to the <Image>.

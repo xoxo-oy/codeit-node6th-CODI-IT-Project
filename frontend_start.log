@@ -1,0 +1,12 @@
+nohup: ignoring input
+
+> project-codiit-fe@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.7
+   - Local:        http://localhost:3000
+   - Network:      http://10.255.255.254:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 1827ms
