@@ -8,7 +8,8 @@ export class ProductController {
   // POST /api/products
   public create = async (req: Request, res: Response) => {
     const userId = req.user!.id; // auth.middleware 통과 보장
-    const imagePath = req.file ? (req.file as any).location : undefined;
+    const baseUrl = process.env.BACKEND_URL || "";
+    const imagePath = req.file ? `${baseUrl}/uploads/${req.file.filename}` : undefined;
 
     const product = await this.productService.createProduct(userId, req.body, imagePath);
     return res.status(201).json(product);
@@ -31,7 +32,8 @@ export class ProductController {
   public update = async (req: Request, res: Response) => {
     const userId = req.user!.id;
     const productId = req.params.productId as string;
-    const imagePath = req.file ? (req.file as any).location : undefined;
+    const baseUrl = process.env.BACKEND_URL || "";
+    const imagePath = req.file ? `${baseUrl}/uploads/${req.file.filename}` : undefined;
 
     const product = await this.productService.updateProduct(userId, productId, req.body, imagePath);
     return res.status(200).json(product);
