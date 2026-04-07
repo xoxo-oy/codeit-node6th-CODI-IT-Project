@@ -4,8 +4,9 @@
   "description": "[문서화 노션 링크](https://www.notion.so/31333bcd14368142808dcc923dc1885a?source=copy_link)",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "start": "node dist/src/server.js",
     "dev": "nodemon -L src/server.ts",
+    "build": "tsc && npx prisma generate",
     "test": "jest --runInBand --detectOpenHandles",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage"
