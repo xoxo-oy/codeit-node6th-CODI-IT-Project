@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import { errorHandler } from "./middlewares/error.middleware";
 import authRouter from "./models/auth/auth.router";
 import userRouter from "./models/user/user.router";
@@ -28,6 +29,9 @@ app.use(cors({
 })); // 프론트엔드와 백엔드의 도메인이 달라도 통신 허용
 app.use(express.json()); // JSON 바디 파싱 허용
 app.use(express.urlencoded({ extended: true })); // URL 인코딩된 바디 파싱 허용
+
+// 1-1. 정적 파일 라이브러리 (이미지 업로드 경로 허용)
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 
 // 2. 헬스 체크용 라우터 (서버가 살았는지 테스트)
 app.get("/api/health", (req, res) => {

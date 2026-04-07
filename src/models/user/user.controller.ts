@@ -20,8 +20,9 @@ export class UserController {
     // multer 미들웨어(upload.single) 거쳐서 이미지가 있다면 req.file에 들어있습니다.
     let imagePath = undefined;
     if (req.file) {
-      // multer-s3를 사용할 경우 req.file.location에 S3 URL이 담깁니다.
-      imagePath = (req.file as any).location;
+      // 로컬 저장을 사용할 경우 /uploads/파일명 형식을 사용합니다.
+      const baseUrl = process.env.BACKEND_URL || "";
+      imagePath = `${baseUrl}/uploads/${req.file.filename}`;
     }
 
     const updatedUser = await this.userService.updateMe(userId, req.body, imagePath);
